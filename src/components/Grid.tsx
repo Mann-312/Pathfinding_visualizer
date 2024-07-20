@@ -45,28 +45,20 @@ export function Grid({
   return (
     <div
       className={twMerge(
-        // Base classes
-        "flex items-center flex-col justify-center border-sky-300 mt-10",
-        // Control Grid height
-        `lg:min-h-[${MAX_ROWS * 17}px]  md:min-h-[${
-          MAX_ROWS * 15
-        }px] xs:min-h-[${MAX_ROWS * 8}px] min-h-[${MAX_ROWS * 7}px]`,
-        // Controlling grid width
-        `lg:w-[${MAX_COLS * 17}px] md:w-[${MAX_COLS * 15}px] xs:w-[${
-          MAX_COLS * 8
-        }px] w-[${MAX_COLS * 7}px]`
+        "flex items-center flex-col justify-center mt-10 border border-gray-600 rounded-lg",
+        `lg:min-h-[${MAX_ROWS * 20}px] md:min-h-[${MAX_ROWS * 18}px] sm:min-h-[${MAX_ROWS * 10}px] min-h-[${MAX_ROWS * 8}px]`,
+        `lg:w-[${MAX_COLS * 20}px] md:w-[${MAX_COLS * 18}px] sm:w-[${MAX_COLS * 10}px] w-[${MAX_COLS * 8}px]`
       )}
     >
       {grid.map((r, rowIndex) => (
         <div key={rowIndex} className="flex">
-          {r.map((tile, tileIndex) => {
-            const { row, col, isEnd, isStart, isPath, isTraversed, isWall } =
-              tile;
+          {r.map((tile) => {
+            const { row, col, isEnd, isStart, isPath, isTraversed, isWall } = tile;
             return (
               <Tile
-                key={tileIndex}
-                row={tile.row}
-                col={tile.col}
+                key={`${row}-${col}`}
+                row={row}
+                col={col}
                 isEnd={isEnd}
                 isStart={isStart}
                 isPath={isPath}
